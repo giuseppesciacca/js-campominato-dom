@@ -27,7 +27,7 @@ btn_play.addEventListener('click', function () {
 
     campoMinato(numSquare(), bombArray);
 
-    const allSquare = document.querySelectorAll('.col_my');
+
 
 });
 
@@ -102,6 +102,7 @@ function colorSquare(element, index, array) {
         console.log('point ' + points);
 
         detectionBomb(index, array, element);
+
     })
 }
 
@@ -110,7 +111,7 @@ function detectionBomb(i, array, squareElement) {
     for (let j = 0; j < array.length; j++) {
         const element = array[j];
 
-        if (i == element) {
+        if (i + 1 == element) {
             squareElement.classList.add('bomb');
             squareElement.innerHTML = `<i class="fa-solid fa-bomb fa-2x"></i>`;
             /* verdictEl.classList.remove('d-none'); */
