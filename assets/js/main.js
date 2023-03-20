@@ -21,7 +21,6 @@ btn_play.addEventListener('click', function () {
     rowEl.innerHTML = '';   //svuoto il precedente campo
     clickedCell = [];
 
-
     numSquare()
     const victoryCondition = numSquare() - 16;
 
@@ -33,8 +32,6 @@ btn_play.addEventListener('click', function () {
     campoMinato(numSquare(), bombArray, victoryCondition);
 });
 
-//quando clicchi bomba o quando apri tutte le celle che non sono bombe
-//forse funzione che alla fine mi ritorna un booleano? 
 
 
 /* ******* 
@@ -55,15 +52,13 @@ function numSquare() {
 //*************
 function createBomb(numCells, array) {
 
-    let i = 0;
-    while (i < 16) {
+    while (array.length < 16) {
         let bomb = Math.floor(Math.random() * (numCells - 1) + 1);
 
-        //console.log(bomb);
+        console.log(bomb);
         if (!array.includes(bomb)) {
             array.push(bomb);
         }
-        i++
     }
 }
 
@@ -129,5 +124,3 @@ function detectionBomb(i, array, squareElement) {
         }
     }
 }
-
-//**************
