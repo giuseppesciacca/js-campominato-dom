@@ -46,10 +46,11 @@ body {
     background-color: white;
 }
 
-#verdict {
-    max-width: 1140px;
-    aspect-ratio: 1 / 1;
+#overlay {
+    min-height: calc(100vh - 10rem - 3rem);
+    width: 100%;
     z-index: 1;
+    background-color: red;
 }
 
 .active {

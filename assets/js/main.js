@@ -13,11 +13,14 @@ const btn_play = document.getElementById('btn_play');
 const difficultyEl = document.getElementById('difficulty');
 const overlayEl = document.getElementById('overlay');
 const resultEl = document.getElementById('result');
+let clickedCell = [];
 
-let points = 0;
 
 btn_play.addEventListener('click', function () {
+    overlayEl.classList.add('d-none');
     rowEl.innerHTML = '';   //svuoto il precedente campo
+    clickedCell = [];
+
 
     numSquare()
     const victoryCondition = numSquare() - 16;
@@ -40,12 +43,13 @@ FUNCTIONS
 function numSquare() {
     let numSquare = 0; //metto numero attraverso select
     if (difficultyEl.value == 'easy') {
-        return numSquare = 100;
+        numSquare = 100;
     } else if (difficultyEl.value == 'medium') {
-        return numSquare = 81;
+        numSquare = 81;
     } else {
-        return numSquare = 49;
+        numSquare = 49;
     }
+    return numSquare;
 }
 
 //*************
@@ -56,15 +60,11 @@ function createBomb(numCells, array) {
         let bomb = Math.floor(Math.random() * (numCells - 1) + 1);
 
         //console.log(bomb);
-        if (bomb in array) {
-            array.pop(bomb);
-            i--;
-        } else {
+        if (!array.includes(bomb)) {
             array.push(bomb);
-            i++;
         }
+        i++
     }
-    i++
 }
 
 //**************
@@ -97,19 +97,18 @@ function userAction(element, index, array, pointsWin) {
         this.innerHTML = `<span> ${index + 1} </span>`;
         let cell = (index + 1);
 
-        const clickedCell = [];
-        if (!(cell in clickedCell)) {
+        if (!clickedCell.includes(cell)) {
             clickedCell.push(cell);
         };
 
         console.log(clickedCell);
-        points += clickedCell.length;
+        points = clickedCell.length;
         console.log('Score ' + points);
 
         detectionBomb(index, array, element);
 
-        if (points > 5) { //metto 5 per le prove
-            resultEl.innerHTML = `YOU WIN <br> YOUR SCORE IS ${pointsWin}`
+        if (points == pointsWin) {
+            resultEl.innerHTML = `YOU WIN <br> YOUR SCORE IS ${points}`
             console.log('WIN');
             overlayEl.classList.remove('d-none');
         }
@@ -126,11 +125,9 @@ function detectionBomb(i, array, squareElement) {
             squareElement.classList.add('bomb');
             squareElement.innerHTML = `<i class="fa-solid fa-bomb fa-2x"></i>`;
             overlayEl.classList.remove('d-none');
+            resultEl.innerHTML = `YOU LOSE`
         }
     }
 }
 
 //**************
-
-
-//devo fare prima la condizione del tot bombe - 16 e dire che quella è la vittoria. controllarla ad ogni click. Occhio al contatore!
