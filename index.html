@@ -54,7 +54,7 @@
     </header>
     <!-- /#app_header -->
 
-    <main id="app_main" class="d-flex align-items-center justify-content-center">
+    <main id="app_main" class="d-flex align-items-center justify-content-center position-relative">
         <div class="wrapper m-auto">
             <div class="container-fluid my-5">
                 <div id="row_main" class="row text-dark">
@@ -62,8 +62,14 @@
                 </div>
                 <!-- /container -->
             </div>
-            <!-- /wrapper -->
 
+        </div>
+        <!-- /wrapper -->
+        <div id="verdict" class="position-absolute d-flex align-items-center justify-content-center d-none">
+            <div class="p-5 bg-secondary text-center">
+                <p class="text-warning">YOU LOSE</p>
+            </div>
+        </div>
     </main>
 
     <footer id="app_footer" class="d-flex align-items-center ps-3 justify-content-center justify-content-md-start">

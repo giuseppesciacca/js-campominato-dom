@@ -10,6 +10,7 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 const rowEl = document.getElementById('row_main');
 const btn_play = document.getElementById('btn_play');
 const difficultyEl = document.getElementById('difficulty');
+const verdictEl = document.getElementById('verdict');
 
 btn_play.addEventListener('click', function () {
     rowEl.innerHTML = '';   //svuoto il precedente campo
@@ -93,7 +94,8 @@ function detectionBomb(i, array, squareElement) {
         const element = array[j];
 
         if (i == element) {
-            squareElement.classList.add('bomb')
+            squareElement.classList.add('bomb');
+            verdictEl.classList.remove('d-none');
         }
     }
 }

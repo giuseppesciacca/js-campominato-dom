@@ -46,6 +46,12 @@ body {
     background-color: white;
 }
 
+#verdict {
+    max-width: 1140px;
+    aspect-ratio: 1 / 1;
+    z-index: 1;
+}
+
 .active {
     border: 1px solid #3f3f3f;
     background: #a9a9a9;
