@@ -66,7 +66,7 @@ function colorSquare(element, index, array) {
         console.log(`Hai cliccato la cella numero ${index + 1}`);
         this.innerHTML = `<span> ${index + 1} </span>`;
 
-        points += (index + 1)
+        points += +1;
         console.log('point ' + points);
 
         detectionBomb(index, array, element)
