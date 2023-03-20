@@ -21,15 +21,16 @@ btn_play.addEventListener('click', function () {
     rowEl.innerHTML = '';   //svuoto il precedente campo
     clickedCell = [];
 
-    numSquare()
-    const victoryCondition = numSquare() - 16;
+    let numCell = numSquare()
+    const victoryCondition = numCell - 16;
 
     //create bombs and push them into array
-    const bombArray = [];
-    createBomb(numSquare(), bombArray);
-    console.log(bombArray);
+    //const bombArray = [];
+    const bombArray = createBomb(numCell);
 
-    campoMinato(numSquare(), bombArray, victoryCondition);
+    //console.log(bombArray);
+
+    campoMinato(numCell, bombArray, victoryCondition);
 });
 
 
@@ -50,16 +51,17 @@ function numSquare() {
 }
 
 //*************
-function createBomb(numCells, array) {
+function createBomb(numCells) {
+    const bombArray = [];
 
-    while (array.length < 16) {
+    while (bombArray.length < 16) {
         let bomb = Math.floor(Math.random() * (numCells - 1) + 1);
 
-        console.log(bomb);
-        if (!array.includes(bomb)) {
-            array.push(bomb);
+        if (!bombArray.includes(bomb)) {
+            bombArray.push(bomb);
         }
     }
+    return bombArray;
 }
 
 //**************
