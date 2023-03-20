@@ -99,7 +99,7 @@ function detectionBomb(i, array, squareElement) {
 
         if (i == element) {
             squareElement.classList.add('bomb');
-            squareElement.innerHTML = `<i class="fa-solid fa-bomb fa-4x"></i>`
+            squareElement.innerHTML = `<i class="fa-solid fa-bomb fa-2x"></i>`
             /* verdictEl.classList.remove('d-none'); */
         }
     }
