@@ -50,7 +50,8 @@ body {
     min-height: calc(100vh - 10rem - 3rem);
     width: 100%;
     z-index: 1;
-    background-color: red;
+    background-color: #1e1e1e;
+    opacity: 0.90;
 }
 
 .active {

@@ -13,23 +13,22 @@ const btn_play = document.getElementById('btn_play');
 const difficultyEl = document.getElementById('difficulty');
 const overlayEl = document.getElementById('overlay');
 const resultEl = document.getElementById('result');
-let clickedCell = [];
 
+let clickedCell = [];
 
 btn_play.addEventListener('click', function () {
     overlayEl.classList.add('d-none');
     rowEl.innerHTML = '';   //svuoto il precedente campo
-    clickedCell = [];
+    clickedCell = [];       //on click empty array
 
+    //create the squares and the victory condition
     let numCell = numSquare()
     const victoryCondition = numCell - 16;
 
     //create bombs and push them into array
-    //const bombArray = [];
     const bombArray = createBomb(numCell);
 
-    //console.log(bombArray);
-
+    //make colums + event listner on click square
     campoMinato(numCell, bombArray, victoryCondition);
 });
 
