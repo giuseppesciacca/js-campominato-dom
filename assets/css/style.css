@@ -51,10 +51,12 @@ body {
     background: #a9a9a9;
 }
 
+.bomb {
+    background: crimson;
+}
+
 @media screen and (max-width: 480px) {
     #app_main {
         font-size: 0.75rem;
     }
 }
-
-;

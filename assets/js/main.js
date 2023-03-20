@@ -1,6 +1,6 @@
 /*  Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
-
 nella stessa cella può essere posizionata al massimo una bomba, perciò nell’array delle bombe non potranno esserci due numeri uguali.
+
 In seguito l'utente clicca su una cella:
 se il numero è presente nella lista dei numeri generati abbiamo calpestato una bomba la cella si colora di rosso e la partita termina.
 Altrimenti la cella cliccata si colora di azzurro l'utente può continuare a cliccare sulle altre celle.
@@ -28,13 +28,47 @@ btn_play.addEventListener('click', function () {
     createBomb(numSquare, bombArray);
     console.log(bombArray);
 
-    campoMinato(numSquare);
+    campoMinato(numSquare, bombArray);
+
 });
 
 
 /* ******* 
 FUNCTIONS
 ******** */
+function campoMinato(numCells, array) {
+
+    for (let i = 0; i < numCells; i++) {
+        const squareEl = document.createElement('div');
+        squareEl.classList.add('col_my', 'd-flex', 'align-items-center', 'justify-content-center');
+
+        if (numCells == 100) {
+            squareEl.classList.add('col_my_ez')
+        } else if (numCells == 81) {
+            squareEl.classList.add('col_my_md')
+        } else {
+            squareEl.classList.add('col_my_hd')
+        }
+
+        rowEl.append(squareEl);
+
+        //al click, coloro + log;
+        colorSquare(squareEl, i, array);
+    }
+}
+
+//*************
+function colorSquare(element, index, array) {
+    element.addEventListener('click', function () {
+        this.classList.toggle('active');
+        console.log(`Hai cliccato la cella numero ${index + 1}`);
+        this.innerHTML = `<span> ${index + 1} </span>`;
+
+        detectionBomb(index, array, element)
+    })
+}
+
+//**************
 function createBomb(numCells, array) {
 
     let i = 0;
@@ -53,32 +87,13 @@ function createBomb(numCells, array) {
     i++
 }
 
-function campoMinato(numCells) {
+//**************
+function detectionBomb(i, array, squareElement) {
+    for (let j = 0; j < array.length; j++) {
+        const element = array[j];
 
-    for (let i = 0; i < numCells; i++) {
-        const squareEl = document.createElement('div');
-        squareEl.classList.add('col_my', 'd-flex', 'align-items-center', 'justify-content-center');
-
-        if (numCells == 100) {
-            squareEl.classList.add('col_my_ez')
-        } else if (numCells == 81) {
-            squareEl.classList.add('col_my_md')
-        } else {
-            squareEl.classList.add('col_my_hd')
+        if (i == element) {
+            squareElement.classList.add('bomb')
         }
-
-        rowEl.append(squareEl);
-
-        //al click, coloro + log;
-        colorSquare(squareEl, i);
     }
-}
-
-//*************
-function colorSquare(element, index) {
-    element.addEventListener('click', function () {
-        this.classList.toggle('active');
-        console.log(`Hai cliccato la cella numero ${index + 1}`);
-        this.innerHTML = `<span> ${index + 1} </span>`;
-    })
 }
