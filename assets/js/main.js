@@ -11,7 +11,8 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 const rowEl = document.getElementById('row_main');
 const btn_play = document.getElementById('btn_play');
 const difficultyEl = document.getElementById('difficulty');
-const verdictEl = document.getElementById('verdict');
+const overlayEl = document.getElementById('overlay');
+const resultEl = document.getElementById('result');
 
 let points = 0;
 
@@ -19,21 +20,18 @@ btn_play.addEventListener('click', function () {
     rowEl.innerHTML = '';   //svuoto il precedente campo
 
     numSquare()
+    const victoryCondition = numSquare() - 16;
 
     //create bombs and push them into array
     const bombArray = [];
     createBomb(numSquare(), bombArray);
     console.log(bombArray);
 
-    campoMinato(numSquare(), bombArray);
-
-
-
+    campoMinato(numSquare(), bombArray, victoryCondition);
 });
 
 //quando clicchi bomba o quando apri tutte le celle che non sono bombe
 //forse funzione che alla fine mi ritorna un booleano? 
-
 
 
 /* ******* 
@@ -70,7 +68,7 @@ function createBomb(numCells, array) {
 }
 
 //**************
-function campoMinato(numCells, array) {
+function campoMinato(numCells, array, pointsWin) {
 
     for (let i = 0; i < numCells; i++) {
         const squareEl = document.createElement('div');
@@ -87,21 +85,34 @@ function campoMinato(numCells, array) {
         rowEl.append(squareEl);
 
         //al click, coloro + log;
-        colorSquare(squareEl, i, array);
+        userAction(squareEl, i, array, pointsWin);
     }
 }
 
-//*************
-function colorSquare(element, index, array) {
+//************* FUNZIONE CLICK DELL'ELEMENTO
+function userAction(element, index, array, pointsWin) {
     element.addEventListener('click', function () {
         this.classList.add('active');
         console.log(`Hai cliccato la cella numero ${index + 1}`);
         this.innerHTML = `<span> ${index + 1} </span>`;
+        let cell = (index + 1);
 
-        points += +1;
-        console.log('point ' + points);
+        const clickedCell = [];
+        if (!(cell in clickedCell)) {
+            clickedCell.push(cell);
+        };
+
+        console.log(clickedCell);
+        points += clickedCell.length;
+        console.log('Score ' + points);
 
         detectionBomb(index, array, element);
+
+        if (points > 5) { //metto 5 per le prove
+            resultEl.innerHTML = `YOU WIN <br> YOUR SCORE IS ${pointsWin}`
+            console.log('WIN');
+            overlayEl.classList.remove('d-none');
+        }
 
     })
 }
@@ -114,7 +125,12 @@ function detectionBomb(i, array, squareElement) {
         if (i + 1 == element) {
             squareElement.classList.add('bomb');
             squareElement.innerHTML = `<i class="fa-solid fa-bomb fa-2x"></i>`;
-            /* verdictEl.classList.remove('d-none'); */
+            overlayEl.classList.remove('d-none');
         }
     }
 }
+
+//**************
+
+
+//devo fare prima la condizione del tot bombe - 16 e dire che quella è la vittoria. controllarla ad ogni click. Occhio al contatore!
