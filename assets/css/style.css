@@ -11,16 +11,16 @@ body {
 }
 
 #app_header {
-    min-height: 6rem;
+    min-height: 10rem;
     background-color: white;
 }
 
 #app_main {
-    min-height: calc(100vh - 6rem - 3rem);
+    min-height: calc(100vh - 10rem - 3rem);
 }
 
 #app_main .wrapper {
-    max-width: 550px;
+    max-width: 500px;
 }
 
 .col_my {

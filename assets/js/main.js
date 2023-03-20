@@ -5,12 +5,14 @@ se il numero è presente nella lista dei numeri generati abbiamo calpestato una 
 Altrimenti la cella cliccata si colora di azzurro l'utente può continuare a cliccare sulle altre celle.
 
 La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti (ovvero quando ha rivelato tutte le celle che non sono bombe).
+
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba. */
 
 const rowEl = document.getElementById('row_main');
 const btn_play = document.getElementById('btn_play');
 const difficultyEl = document.getElementById('difficulty');
 const verdictEl = document.getElementById('verdict');
+
 let points = 0;
 
 btn_play.addEventListener('click', function () {
@@ -24,7 +26,13 @@ btn_play.addEventListener('click', function () {
     console.log(bombArray);
 
     campoMinato(numSquare(), bombArray);
+
+    const allSquare = document.querySelectorAll('.col_my');
+
 });
+
+//quando clicchi bomba o quando apri tutte le celle che non sono bombe
+//forse funzione che alla fine mi ritorna un booleano? 
 
 
 
@@ -43,6 +51,25 @@ function numSquare() {
 }
 
 //*************
+function createBomb(numCells, array) {
+
+    let i = 0;
+    while (i < 16) {
+        let bomb = Math.floor(Math.random() * (numCells - 1) + 1);
+
+        //console.log(bomb);
+        if (bomb in array) {
+            array.pop(bomb);
+            i--;
+        } else {
+            array.push(bomb);
+            i++;
+        }
+    }
+    i++
+}
+
+//**************
 function campoMinato(numCells, array) {
 
     for (let i = 0; i < numCells; i++) {
@@ -74,27 +101,8 @@ function colorSquare(element, index, array) {
         points += +1;
         console.log('point ' + points);
 
-        detectionBomb(index, array, element)
+        detectionBomb(index, array, element);
     })
-}
-
-//**************
-function createBomb(numCells, array) {
-
-    let i = 0;
-    while (i < 16) {
-        let bomb = Math.floor(Math.random() * (numCells - 1) + 1);
-
-        //console.log(bomb);
-        if (bomb in array) {
-            array.pop(bomb);
-            i--
-        } else {
-            array.push(bomb);
-            i++
-        }
-    }
-    i++
 }
 
 //**************
@@ -104,11 +112,8 @@ function detectionBomb(i, array, squareElement) {
 
         if (i == element) {
             squareElement.classList.add('bomb');
-            squareElement.innerHTML = `<i class="fa-solid fa-bomb fa-2x"></i>`
+            squareElement.innerHTML = `<i class="fa-solid fa-bomb fa-2x"></i>`;
             /* verdictEl.classList.remove('d-none'); */
         }
     }
 }
-
-
-//forse funzione che alla fine mi ritorna un booleano?
