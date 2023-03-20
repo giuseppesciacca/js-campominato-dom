@@ -101,7 +101,7 @@ function userAction(element, index, array, pointsWin) {
         points = clickedCell.length;
         console.log('Score ' + points);
 
-        detectionBomb(index, array, element);
+        detectionBomb(index, array, element, points);
 
         if (points == pointsWin) {
             resultEl.innerHTML = `YOU WIN <br> YOUR SCORE IS ${points}`
@@ -113,7 +113,7 @@ function userAction(element, index, array, pointsWin) {
 }
 
 //**************
-function detectionBomb(i, array, squareElement) {
+function detectionBomb(i, array, squareElement, points) {
     for (let j = 0; j < array.length; j++) {
         const element = array[j];
 
@@ -121,7 +121,7 @@ function detectionBomb(i, array, squareElement) {
             squareElement.classList.add('bomb');
             squareElement.innerHTML = `<i class="fa-solid fa-bomb fa-2x"></i>`;
             overlayEl.classList.remove('d-none');
-            resultEl.innerHTML = `YOU LOSE`
+            resultEl.innerHTML = `YOU LOSE <br> YOUR SCORE IS ${points}`
         }
     }
 }
