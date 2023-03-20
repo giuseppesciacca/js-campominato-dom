@@ -1,0 +1,60 @@
+:root {
+    --bg-dark: #1e1e1e;
+    --font-lato: 'Lato', sans-serif;
+    --font-game: 'Odibee Sans', cursive;
+    --font-arcade: 'Press Start 2P', cursive;
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-family: var(--font-arcade) !important;
+}
+
+#app_header {
+    min-height: 11.25rem;
+    background-color: white;
+}
+
+#app_main {
+    min-height: calc(100vh - 11.25rem - 7.5rem);
+}
+
+#app_main .wrapper {
+    max-width: 1140px;
+}
+
+.col_my {
+    aspect-ratio: 1 / 1;
+    border: 5px outset #fefefe;
+    background-color: #bdbdbd;
+}
+
+.col_my_ez {
+    width: calc(100% / 10);
+}
+
+.col_my_md {
+    width: calc(100% / 9);
+}
+
+.col_my_hd {
+    width: calc(100% / 7);
+}
+
+#app_footer {
+    height: 7.5rem;
+    background-color: white;
+}
+
+.active {
+    border: 1px solid #3f3f3f;
+    background: #a9a9a9;
+}
+
+@media screen and (max-width: 480px) {
+    #app_main {
+        font-size: 0.75rem;
+    }
+}
+
+;
