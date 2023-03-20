@@ -16,28 +16,33 @@ let points = 0;
 btn_play.addEventListener('click', function () {
     rowEl.innerHTML = '';   //svuoto il precedente campo
 
-    let numSquare = 0; //metto numero attraverso select
-    if (difficultyEl.value == 'easy') {
-        numSquare = 100;
-    } else if (difficultyEl.value == 'medium') {
-        numSquare = 81;
-    } else {
-        numSquare = 49;
-    }
+    numSquare()
 
-    //create bomb and push it into array
+    //create bombs and push them into array
     const bombArray = [];
-    createBomb(numSquare, bombArray);
+    createBomb(numSquare(), bombArray);
     console.log(bombArray);
 
-    campoMinato(numSquare, bombArray);
-
+    campoMinato(numSquare(), bombArray);
 });
+
 
 
 /* ******* 
 FUNCTIONS
 ******** */
+function numSquare() {
+    let numSquare = 0; //metto numero attraverso select
+    if (difficultyEl.value == 'easy') {
+        return numSquare = 100;
+    } else if (difficultyEl.value == 'medium') {
+        return numSquare = 81;
+    } else {
+        return numSquare = 49;
+    }
+}
+
+//*************
 function campoMinato(numCells, array) {
 
     for (let i = 0; i < numCells; i++) {
@@ -80,7 +85,7 @@ function createBomb(numCells, array) {
     while (i < 16) {
         let bomb = Math.floor(Math.random() * (numCells - 1) + 1);
 
-        console.log(bomb);
+        //console.log(bomb);
         if (bomb in array) {
             array.pop(bomb);
             i--
@@ -104,3 +109,6 @@ function detectionBomb(i, array, squareElement) {
         }
     }
 }
+
+
+//forse funzione che alla fine mi ritorna un booleano?
