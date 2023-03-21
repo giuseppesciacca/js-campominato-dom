@@ -125,11 +125,3 @@ function detectionBomb(i, array, squareElement, points) {
         }
     }
 }
-
-//************** SHOW BOMBS WHEN LOSE
-const allSquare = document.querySelectorAll('.col_my')
-allSquare.forEach(element => {
-
-    const cellNumber = i + 1;
-
-});
