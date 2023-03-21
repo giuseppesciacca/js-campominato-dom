@@ -93,7 +93,7 @@ function userAction(element, index, array, pointsWin) {
         this.innerHTML = `<span> ${index + 1} </span>`;
         let cell = (index + 1);
 
-        if (!clickedCell.includes(cell)) {
+        if (!clickedCell.includes(cell) && !array.includes(cell)) {
             clickedCell.push(cell);
         };
 
@@ -112,7 +112,7 @@ function userAction(element, index, array, pointsWin) {
     })
 }
 
-//**************
+//************** CHECK IF CLICKED CELL IS A BOMB
 function detectionBomb(i, array, squareElement, points) {
     for (let j = 0; j < array.length; j++) {
         const element = array[j];
@@ -125,3 +125,11 @@ function detectionBomb(i, array, squareElement, points) {
         }
     }
 }
+
+//************** SHOW BOMBS WHEN LOSE
+const allSquare = document.querySelectorAll('.col_my')
+allSquare.forEach(element => {
+
+    const cellNumber = i + 1;
+
+});
