@@ -97,6 +97,10 @@ function userAction(element, index, array, pointsWin) {
             clickedCell.push(cell);
         };
 
+        if (array.includes(cell)) {
+            this.classList.add('bomb');
+        };
+
         console.log(clickedCell);
         points = clickedCell.length;
         console.log('Score ' + points);
@@ -126,7 +130,7 @@ function detectionBomb(i, array, points) {
                 // check if the square content its included inside the bombArray
                 const squareNumber = Number(i + 1)
                 if (array.includes(squareNumber)) {
-                    square.classList.add('bomb');
+                    square.classList.add('active');
                     square.innerHTML = `<i class="fa-solid fa-bomb fa-2x"></i>`;
                 }
             }
